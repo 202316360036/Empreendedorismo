@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elder Lopes — Plano de Carreira</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* PROJECTOR-OPTIMIZED PALETTE */
+    --bg-primary: #12131a;
+    --bg-secondary: #181a23;
+    --bg-card: #1e2029;
+    --bg-card-hover: #262833;
+    --accent: #5ebbff;
+    --accent-dim: #3d8fd4;
+    --accent-glow: rgba(94, 187, 255, 0.14);
+    --text-primary: #f2f3f7;
+    --text-secondary: #b8bcc8;
+    --text-muted: #8a8ea0;
+    --border: #2e3142;
+    --border-accent: rgba(94, 187, 255, 0.3);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 18px; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg-primary); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.1rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(18, 19, 26, 0.85);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  nav .logo { font-family: var(--mono); font-size: 0.95rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
+  nav .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+  nav .nav-links a {
+    color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s; position: relative;
+  }
+  nav .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 2px; background: var(--accent); transition: width 0.3s;
+  }
+  nav .nav-links a:hover { color: var(--accent); }
+  nav .nav-links a:hover::after { width: 100%; }
+
+  /* GLOBAL */
+  section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: var(--mono); font-size: 0.85rem; color: var(--accent);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    font-weight: 500;
+  }
+  .section-label::before { content: ''; display: block; width: 32px; height: 2px; background: var(--accent); }
+
+  .section-title {
+    font-family: var(--serif); font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    line-height: 1.2; margin-bottom: 1.5rem;
+  }
+  .section-text { color: var(--text-secondary); font-size: 1.15rem; max-width: 700px; line-height: 1.9; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.95rem 2.2rem; font-family: var(--sans); font-size: 1rem;
+    font-weight: 600; text-decoration: none; border-radius: 8px;
+    transition: all 0.3s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--accent); color: var(--bg-primary); }
+  .btn-primary:hover { background: #7dcbff; box-shadow: 0 0 35px rgba(94, 187, 255, 0.35); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--text-primary); border: 2px solid var(--border); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; padding-top: 5rem; position: relative;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; right: -20%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(94, 187, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 0.9rem; color: var(--accent);
+    letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
+    font-weight: 500;
+  }
+  .hero-name {
+    font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--text-muted); letter-spacing: 1px; margin-bottom: 0.75rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(3.2rem, 7vw, 5.8rem);
+    line-height: 1.05; margin-bottom: 0.5rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .hero-tagline {
+    font-family: var(--serif); font-size: clamp(1.3rem, 2.5vw, 2rem);
+    color: var(--text-secondary); font-style: italic; margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+  .hero .hero-description {
+    color: var(--text-secondary); font-size: 1.2rem; max-width: 580px;
+    line-height: 1.9; margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease forwards 1s; }
+
+  /* ONDE ESTOU HOJE */
+  .today-layout { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .today-top { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  .info-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2.25rem; transition: all 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .info-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .info-card:hover { border-color: var(--border-accent); background: var(--bg-card-hover); transform: translateY(-3px); }
+  .info-card:hover::before { opacity: 1; }
+  .info-card .card-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+  .info-card h3 { font-family: var(--serif); font-size: 1.35rem; margin-bottom: 0.75rem; }
+  .info-card p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; }
+
+  .company-highlight {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+  .skill-tag {
+    font-family: var(--mono); font-size: 0.82rem; padding: 0.4rem 1rem;
+    background: rgba(94, 187, 255, 0.1); border: 1px solid rgba(94, 187, 255, 0.2);
+    border-radius: 20px; color: var(--accent); font-weight: 500;
+  }
+
+  /* PROJETO MOTOJÁ */
+  .project-section {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .project-inner { max-width: 1100px; margin: 0 auto; }
+
+  .project-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 3rem; margin-top: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .project-card::after {
+    content: ''; position: absolute; top: -50%; right: -20%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(94, 187, 255, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+  .project-name { font-family: var(--serif); font-size: 2.7rem; }
+  .project-name span { color: var(--accent); }
+  .project-badge {
+    font-family: var(--mono); font-size: 0.78rem; padding: 0.55rem 1.1rem;
+    background: rgba(94, 187, 255, 0.1); border: 1px solid rgba(94, 187, 255, 0.25);
+    border-radius: 6px; color: var(--accent); letter-spacing: 1px; text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .project-desc { color: var(--text-secondary); font-size: 1.15rem; line-height: 1.9; max-width: 660px; margin-bottom: 2.5rem; }
+
+  .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .project-block h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary); }
+  .project-block p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85; }
+
+  .project-list { list-style: none; margin-top: 0.25rem; }
+  .project-list li {
+    color: var(--text-secondary); font-size: 1.02rem;
+    padding: 0.4rem 0; padding-left: 1.6rem; position: relative;
+    line-height: 1.7;
+  }
+  .project-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+
+  .project-bottom { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+
+  .project-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* PLANO */
+  .plan-section {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    max-width: 100%; padding-left: 2.5rem; padding-right: 2.5rem;
+  }
+  .plan-inner { max-width: 1100px; margin: 0 auto; }
+
+  .phases { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .phase-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2.25rem 2.75rem; transition: all 0.4s;
+    display: grid; grid-template-columns: 150px 1fr; gap: 2rem; align-items: start;
+  }
+  .phase-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+
+  .phase-label { text-align: right; padding-top: 0.15rem; }
+  .phase-years { font-family: var(--mono); font-size: 0.88rem; color: var(--accent); letter-spacing: 2px; font-weight: 500; }
+  .phase-name { font-family: var(--serif); font-size: 1.2rem; margin-top: 0.3rem; color: var(--text-muted); }
+
+  .phase-body p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85; }
+  .phase-body ul { list-style: none; margin-top: 0.5rem; }
+  .phase-body ul li { color: var(--text-secondary); font-size: 1rem; padding: 0.25rem 0 0.25rem 1.3rem; position: relative; line-height: 1.75; }
+  .phase-body ul li::before { content: '•'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+  /* DIFERENCIAIS */
+  .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .diff-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2.25rem 1.75rem; text-align: center; transition: all 0.4s;
+  }
+  .diff-card:hover { border-color: var(--border-accent); transform: translateY(-4px); }
+  .diff-card .diff-icon {
+    width: 52px; height: 52px; margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(94, 187, 255, 0.1); border-radius: 12px; font-size: 1.4rem;
+  }
+  .diff-card h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .diff-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.75; }
+
+  /* CONCLUSÃO */
+  .conclusion-section { background: var(--bg-secondary); border-top: 1px solid var(--border); }
+  .conclusion-content { text-align: center; max-width: 700px; margin: 0 auto; }
+  .conclusion-content .section-label { justify-content: center; }
+  .conclusion-content .section-label::before { display: none; }
+  .conclusion-quote {
+    font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.4; margin-bottom: 1.5rem; font-style: italic;
+  }
+  .conclusion-quote .accent { color: var(--accent); }
+  .conclusion-text { color: var(--text-secondary); font-size: 1.15rem; line-height: 1.9; margin-bottom: 2rem; }
+
+  /* FOOTER */
+  footer { padding: 2.5rem; text-align: center; border-top: 1px solid var(--border); }
+  footer p { font-family: var(--mono); font-size: 0.82rem; color: var(--text-muted); letter-spacing: 1px; }
+  footer .accent { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .today-top, .project-grid, .project-bottom { grid-template-columns: 1fr; }
+    .diff-grid { grid-template-columns: 1fr; }
+    .phase-card { grid-template-columns: 1fr; gap: 0.75rem; }
+    .phase-label { text-align: left; }
+    nav .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 4rem 1.25rem; }
+    .project-card { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Elder Lopes</div>
+  <ul class="nav-links">
+    <li><a href="#hoje">Hoje</a></li>
+    <li><a href="#projeto">MotoJá</a></li>
+    <li><a href="#plano">Plano</a></li>
+    <li><a href="#diferenciais">Diferenciais</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Análise e Desenvolvimento de Sistemas</p>
+  <p class="hero-name">Elder Lopes</p>
+  <h1>
+    Construindo o futuro,<br>
+    <span class="accent">uma linha de código</span><br>
+    por vez.
+  </h1>
+  <p class="hero-tagline">Infraestrutura, backend e visão de produto.</p>
+  <p class="hero-description">
+    Estudante de ADS e profissional de infraestrutura de TI. Trabalho com servidores Linux e redes,
+    e estou construindo minha trajetória em desenvolvimento backend e arquitetura de sistemas.
+  </p>
+  <div class="hero-cta">
+    <a href="#projeto" class="btn btn-primary">Conhecer o MotoJá ↓</a>
+    <a href="#plano" class="btn btn-outline">Ver Plano de Carreira</a>
+  </div>
+</section>
+
+<!-- ONDE ESTOU HOJE -->
+<section id="hoje">
+  <div class="reveal">
+    <span class="section-label">01 — Ponto de Partida</span>
+    <h2 class="section-title">Onde estou hoje</h2>
+    <p class="section-text">
+      Tenho 22 anos e meu ponto de partida é a junção entre infraestrutura de TI e desenvolvimento de software — dois mundos que se complementam.
+    </p>
+  </div>
+
+  <div class="today-layout reveal">
+    <div class="today-top">
+      <div class="info-card">
+        <div class="card-icon">🎓</div>
+        <h3>Formação</h3>
+        <p>
+          Cursando Análise e Desenvolvimento de Sistemas. Programação, banco de dados, engenharia de software e gestão de projetos — a base de tudo que vem pela frente.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <div class="card-icon">💼</div>
+        <h3>Experiência</h3>
+        <p>
+          Atualmente na <span class="company-highlight">Reale Tech</span>, trabalho com infraestrutura de TI: servidores Linux, redes e suporte técnico. Um dia a dia que exige raciocínio rápido e entendimento de como ambientes computacionais funcionam por dentro.
+        </p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="card-icon">⚡</div>
+      <h3>Tecnologias que uso</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Redes</span>
+        <span class="skill-tag">Backend</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">APIs</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Shell Script</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETO MOTOJÁ -->
+<section id="projeto" class="project-section">
+  <div class="project-inner reveal">
+    <span class="section-label">02 — Projeto em Destaque</span>
+    <h2 class="section-title">MotoJá</h2>
+    <p class="section-text">
+      O projeto que mais representa onde estou e para onde quero ir.
+    </p>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3 class="project-name">Moto<span>Já</span></h3>
+        <span class="project-badge">Plataforma de Mobilidade</span>
+      </div>
+
+      <p class="project-desc">
+        Plataforma de mobilidade urbana para mototáxi. Conecta passageiros a mototaxistas de forma rápida e organizada — pensada para funcionar de verdade, principalmente em cidades onde aplicativos convencionais não chegam.
+      </p>
+
+      <div class="project-grid">
+        <div class="project-block">
+          <h4>Problema que resolve</h4>
+          <ul class="project-list">
+            <li>Mototáxi é essencial em cidades pequenas e médias, mas não tem plataforma digital</li>
+            <li>Passageiros não têm como rastrear corridas ou escolher motoristas</li>
+            <li>Mototaxistas perdem corridas por falta de organização</li>
+            <li>Sem sistema, não há segurança nem registro das viagens</li>
+          </ul>
+        </div>
+
+        <div class="project-block">
+          <h4>Principais funcionalidades</h4>
+          <ul class="project-list">
+            <li>Cadastro e autenticação de passageiros e mototaxistas</li>
+            <li>Solicitação de corrida com localização em tempo real</li>
+            <li>Cálculo automático de tarifa por distância</li>
+            <li>Histórico de corridas e avaliação de motoristas</li>
+            <li>Painel administrativo com visão geral das operações</li>
+            <li>Notificações de status da corrida</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-bottom">
+        <div class="project-block">
+          <h4>Tecnologias do projeto</h4>
+          <div class="skill-tags" style="margin-top: 0.5rem;">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">REST API</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">HTML/CSS/JS</span>
+          </div>
+        </div>
+
+        <div class="project-block">
+          <h4>Próximos passos</h4>
+          <ul class="project-list">
+            <li>Implementar geolocalização real com mapa interativo</li>
+            <li>Criar versão mobile com React Native</li>
+            <li>Testar em ambiente real com mototaxistas da região</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-cta">
+        <a href="#" class="btn btn-primary">Ver Repositório →</a>
+        <a href="#plano" class="btn btn-outline">Ver Plano Completo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANO 10 ANOS -->
+<section id="plano" class="plan-section">
+  <div class="plan-inner">
+    <div class="reveal">
+      <span class="section-label">03 — Plano de Carreira</span>
+      <h2 class="section-title">Visão de 10 anos</h2>
+      <p class="section-text">
+        Não é um roteiro fixo — é uma direção. Três fases pensadas para evoluir passo a passo.
+      </p>
+    </div>
+
+    <div class="phases reveal">
+      <div class="phase-card">
+        <div class="phase-label">
+          <div class="phase-years">ANOS 0–3</div>
+          <div class="phase-name">Base</div>
+        </div>
+        <div class="phase-body">
+          <p>Consolidar a base técnica e começar a trabalhar como desenvolvedor.</p>
+          <ul>
+            <li>Concluir a graduação em ADS</li>
+            <li>Migrar para uma vaga de backend ou DevOps</li>
+            <li>Aprofundar em Node.js, Python, Docker e Cloud (AWS)</li>
+            <li>Tirar certificações: LPIC-1, AWS Cloud Practitioner</li>
+            <li>Construir portfólio com projetos reais (como o MotoJá)</li>
+            <li>Melhorar o inglês técnico</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-label">
+          <div class="phase-years">ANOS 3–5</div>
+          <div class="phase-name">Crescimento</div>
+        </div>
+        <div class="phase-body">
+          <p>Ganhar experiência com projetos maiores e aprofundar em arquitetura.</p>
+          <ul>
+            <li>Trabalhar em projetos de média/alta complexidade</li>
+            <li>Estudar microsserviços, sistemas distribuídos e cloud avançado</li>
+            <li>Certificações: AWS Solutions Architect, Kubernetes (CKA)</li>
+            <li>Iniciar uma pós-graduação em Engenharia de Software</li>
+            <li>Começar um SaaS próprio como laboratório prático</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-label">
+          <div class="phase-years">ANOS 5–10</div>
+          <div class="phase-name">Estabilidade</div>
+        </div>
+        <div class="phase-body">
+          <p>Ter estabilidade profissional e, se fizer sentido, lançar um produto próprio.</p>
+          <ul>
+            <li>Estar numa posição sólida como desenvolvedor ou arquiteto</li>
+            <li>Avaliar criação de produto ou startup com base no que aprendi</li>
+            <li>Estudar gestão de produto e visão de negócios</li>
+            <li>Ter independência financeira e profissional pela competência técnica</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="reveal">
+    <span class="section-label">04 — Diferenciais</span>
+    <h2 class="section-title">O que me move</h2>
+    <p class="section-text">
+      Ferramentas mudam, linguagens surgem — o que sustenta uma carreira são os hábitos por trás do trabalho.
+    </p>
+  </div>
+
+  <div class="diff-grid reveal">
+    <div class="diff-card">
+      <div class="diff-icon">⚙️</div>
+      <h3>Disciplina</h3>
+      <p>Estudo e pratico mesmo quando a motivação não aparece. Resultados vêm da repetição, não da inspiração.</p>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-icon">🔍</div>
+      <h3>Curiosidade</h3>
+      <p>Gosto de entender como as coisas funcionam por dentro. Não me contento em usar uma ferramenta — preciso saber por que ela funciona.</p>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-icon">🔁</div>
+      <h3>Consistência</h3>
+      <p>Prefiro avançar um pouco todo dia do que muito em um só. É assim que projetos como o MotoJá saem do zero.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSÃO -->
+<section class="conclusion-section">
+  <div class="conclusion-content reveal">
+    <span class="section-label">05 — Conclusão</span>
+    <p class="conclusion-quote">
+      Tecnologia é o meio.<br>
+      <span class="accent">Resolver problemas reais</span> é o objetivo.
+    </p>
+    <p class="conclusion-text">
+      Esse plano é uma direção, não uma promessa. O que sei é que vou continuar estudando, construindo e evoluindo — um projeto de cada vez.
+    </p>
+    <a href="#" class="btn btn-primary" style="margin: 0 auto;">Entrar em Contato</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Elder Lopes — Construído com propósito <span class="accent">&</span> código — 2025</p>
+</footer>
+
+<!-- SCROLL REVEAL -->
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.borderBottomColor = window.scrollY > 80
+      ? 'rgba(94, 187, 255, 0.12)' : 'var(--border)';
+  });
+</script>
+
+</body>
+</html>
